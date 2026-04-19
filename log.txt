@@ -1,0 +1,109 @@
+13/01/2026
+- Looked at notebook on K Nearest Neighbours
+- Searched For Dataset
+- Chose Kickstarter Projects Dataset https://www.kaggle.com/datasets/kemical/kickstarter-projects and planning on classifying on whether or not a project will be successful or a failure
+
+18/01/2026
+- Setted up data by dropping non-numerical data and will find out how to encode later
+- Normalised data as some pledges and goals can be as low as a dollar up to 10s of millions
+- Trained model based on data and visualised results
+- Plotted points based on kickstarter goal and amount pledged
+- Set up testing set and used classification report function 
+
+20/01/2026
+- Added labels to graphs
+- Researched how to find the optimal K Neighbours
+- Implemented grid search from SciKit-Learn to find the optimal value of K and used it to tune the model to its best parameters
+
+27/01/2026
+- Data for the goal in USD and pledged in USD is still skewed for how much difference there is in the data, so looked into log scaling as suggested by lecturer
+- Need to handle values of 0, log1p can handle tiny numbers and works with 0 values
+- Model was also perfect at predictions, giving it the amount pledged meant the predictions meant nothing 
+
+10/02/2026
+- Applied One Hot Encoding for categorical data and found out that it may increase dimensionality and affect KNN
+- Used Column Transformer to apply preprocessing techniques in one go
+- Looking into using PCA to reduce the effect of dimensionality on KNN and knowing how many components to use
+
+14/02/2026
+- Applied PCA to the categorical data 
+- Classification report shows a 98% accuracy but this seems to be too high
+- Reasoning for above may be due to training on the amount pledged to a kickstarter project as well as the goal for a project, but needs to be looked into
+
+15/02/2026
+- Removed training the KNN model on the amount of money pledged to see the accuracy if just the goal is given, reduced the accuracy from 98 to 90
+- Added visualisation for different categories of projects and if they're successful or failures, including a legend for different categories
+- Looking into experimenting with different data such as start and end dates, and also the different currency conversions 
+- Points on graph look to mainly be on the left and at the bottom, will consider seperating the data set into different goals
+- Added markdown for KNN
+
+16/02/2026
+- Started support vector machine
+- Using credit card fraud dataset https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+- Dataset uses real data that is PCA transformed so is hard to interpret nearly every column
+- Only columns not transformed are the time, amount and the class however time doesn't seem very relevant so I dropped it
+- Performed pre-processing using a min max scaler to normalise the data as high values in the amount that was withdrawn may negatively affect the support vector machine
+- Tried to use GridSearchCV to find the optimal parameters however it seems to take a huge amount of time so I'll leave it for later
+
+17/02/2026
+- The dataset is massively unbalanced with less than 500 fraud cases and in over 240000 transactions
+- Researched handling unbalanced datasets and class weights are suggested in order to penalise misclassifications of minority classes such as the fraud cases
+- Model already has a parameter to set the class weight during training
+- Added model metrics and researched then applied the area under the precision recall curve as it was suggested by the dataset description that it would be a better metric for unbalanced datasets
+- Added markdown for SVM
+
+24/02/2026
+- Received feedback from lecturer 
+- Moving on to neural networks and chose to use a CNN on an alzheimer's detection dataset 
+- Looking into using tensorflow as a library for machine learning 
+
+25/02/2026
+- Looked into tensorflow documentation which showed how to use its libraries for creating a CNN and applying it for image classification
+- Applied information from documentation to create a CNN
+- Used data augmentation as a form of preprocessing to reduce overfitting as per tensorflow documentation
+- Training the model took an hour but had very good results so it may be too easy and looking for a new dataset may be necessary for a challenge however
+
+03/03/2026
+- Received feedback from lecturer, and was suggested to set up a test set to go along with the training and validation sets to test performance and determine the model's performance
+- Researched how to split a dataset in tensorflow to create a train test split 
+
+09/03/2026
+- Applied information on how to split the dataset which required a manual implementation since there's no function that splits for you in tensorflow and ran the model on a test set 
+- Retrieved results and they appear to be very accurate, will seek feedback again on how to approach in the future
+- The very good results however may be a result of being able to tell by eye the differences between the different stages of dementia
+
+12/03/2026
+- Received feedback from lecturer on model performance and mentioned how I can potentially try and classify between the early stages of dementia, being non demented and very mild dementia
+- Started working on training the model on non demented and very mild dementia features
+
+17/03/2026
+- Finished training model on non demented and very mild dementia features and used other methods to reduce overfitting such as dropout
+- Did write up on that section explaining the benefits of using only the non demented and very mild dementia features
+- Started looking for stock data to train a recurrent neural network with and found the yahoofinance API
+- Found mulitple tutorials online on how to approach problems involving time series data with a recurrent neural network and what kind of preprocessing methods to use
+
+21/03/2026
+- Started working on recurrent neural network and used it to predict the closing price of Nvidia stock 
+- Learned to ensure not to shuffle the data when creating a train test split in order to keep the time series data chronological since sklearn's implementation shuffles by default
+- Used algorithm to create a dataset using time series data in order to train a recurrent neural network by splitting up the time series data into groups of days as an input and the day after the group of days as an output 
+- Tutorials used SimpleRNN however it is best to use LSTM due to its ability to learn long term patterns so I had to research how to use them instead
+- The model initially showed to be 10.77 dollars off the actual price on average on unseen data but is 4.13 dollars off on training data showing that the model is overfitting.
+
+24/03/2026
+- Started testing different parameters for the model such as increasing the dropout and found that the model is a dollar more accurate on testing data.
+- Tested out different numbers of neurons and found differences of less than a dollar
+- Found more effective results when lowering the number of days in each group when creating a dataset as it made the model to be off by less than 10 dollars
+- The most impactful change was with changing the train test split to be 80% training data and 20% testing data as it nearly made the difference of the root mean squared error and mean absolute value between the testing and training set 
+  to be less than a dollar and now the model is off by 4.87 dollars on average and 6.22 dollars on worse cases when predicting the stock's closing price
+- Performed write up on model
+
+25/03/2026
+- Started working on Fuzzy C Means model and using a land mine detection dataset to try and find out how difficult it would be to find out what kind of land mine would found based on voltage, sensor height and soil type
+- SKLearn doesn't seem to have a fuzzy c means model so had to use the SKFuzzy library instead
+- Followed SKFuzzy documentation to create a fuzzy c means model and applied it to my dataset
+- Visualised the highest degree of membership of each point and also the confidence in the model's highest degree of membership
+- Unsure how to evaluate model, will need to get feedback from lecturer
+
+26/03/2026
+- Received feedback from lecturer and got told to try and treat it like a classification problem and so use a confusion matrix
+- Added confusion matrix and performed write up on fuzzy c means model
