@@ -107,3 +107,7 @@
 26/03/2026
 - Received feedback from lecturer and got told to try and treat it like a classification problem and so use a confusion matrix
 - Added confusion matrix and performed write up on fuzzy c means model
+
+14/04/2026
+- Received feedback from lecturer after preliminary submission to add more to the write ups by adding a conclusion for each notebook
+- Added conclusions to each write up 
